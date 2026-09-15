@@ -1,7 +1,9 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Compiled output
+# Compiled output (dist IS committed so hosts without npm can publish;
+# node_modules etc. stay ignored)
 /dist
+!/dist
 /tmp
 /out-tsc
 /bazel-out

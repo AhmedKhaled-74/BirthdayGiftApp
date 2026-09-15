@@ -15,9 +15,9 @@
 # Tooling
 *.binlog
 
-# Node / Angular
+# Node / Angular (dependencies never committed; built SPA dist IS committed so
+# hosts without npm, e.g. MonsterASP.NET, can publish without running npm)
 node_modules/
-age-calculator-web/dist/
 
 # Published SPA bundle (built on `dotnet publish` / Docker, never committed)
 AgeCalculator.Api/wwwroot/

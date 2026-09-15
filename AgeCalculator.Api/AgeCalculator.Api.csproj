@@ -21,14 +21,17 @@
 
   <!-- Production SPA build: `dotnet publish` builds Angular and copies it
        into the publish wwwroot. Docker prebuilds the SPA in a node stage
-       (copied to wwwroot before publish) and passes /p:SkipSpaBuild=true. -->
+       (copied to wwwroot before publish) and passes /p:SkipSpaBuild=true.
+       Hosts with the SPA dist committed (e.g. MonsterASP.NET, where npm is
+       blocked by group policy) skip npm and copy the committed dist. -->
   <Target Name="BuildAngular" AfterTargets="Publish" Condition="'$(SkipSpaBuild)' != 'true'">
-    <Exec Command="npm ci" WorkingDirectory="$(SpaRoot)" />
-    <Exec Command="npm run build" WorkingDirectory="$(SpaRoot)" />
+    <Exec Command="npm ci" WorkingDirectory="$(SpaRoot)" Condition="!Exists('$(SpaDist)index.html')" ContinueOnError="WarnAndContinue" />
+    <Exec Command="npm run build" WorkingDirectory="$(SpaRoot)" Condition="!Exists('$(SpaDist)index.html')" ContinueOnError="WarnAndContinue" />
     <ItemGroup>
       <DistFiles Include="$(SpaDist)**" />
     </ItemGroup>
     <Copy SourceFiles="@(DistFiles)" DestinationFiles="@(DistFiles->'$(PublishDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Warning Condition="!Exists('$(SpaDist)index.html')" Text="Angular dist not found at $(SpaDist); publish output has no frontend. Run 'npm run build' in $(SpaRoot) and commit the dist, or ensure npm is available." />
   </Target>
 
 </Project>
