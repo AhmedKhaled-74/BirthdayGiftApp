@@ -1,0 +1,36 @@
+<div class="auth-stage">
+  <div class="auth-glow" aria-hidden="true"></div>
+  <div class="auth-card logout-card">
+    @if (phase() === 'signing-out') {
+      <div class="logout-visual" role="status" aria-label="Signing out">
+        <span class="orbit" aria-hidden="true"><span class="orbit-dot"></span></span>
+        <span class="brand-mark" aria-hidden="true">AC</span>
+      </div>
+      <p class="eyebrow">One moment</p>
+      <h1>Signing you out...</h1>
+      <p class="auth-sub">Locking up your Age Summary.</p>
+      <div class="progress-track" aria-hidden="true"><span class="progress-fill is-indeterminate"></span></div>
+    } @else if (phase() === 'signed-out') {
+      <div class="logout-visual">
+        <span class="ring" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+        </span>
+      </div>
+      <p class="eyebrow">All done</p>
+      <h1>You are signed out</h1>
+      <p class="auth-sub">Thanks for stopping by. Your countdown to cake continues without us.</p>
+      <div class="logout-actions">
+        <a routerLink="/login" class="btn-primary" (click)="staySignedOut()">Log back in</a>
+        <p class="countdown-note" role="status">Returning to log in in {{ countdown() }}s...</p>
+      </div>
+    } @else {
+      <p class="eyebrow">Hmm</p>
+      <h1>Could not sign you out</h1>
+      <p class="auth-sub">The goodbye got stuck. Try again.</p>
+      <div class="logout-actions">
+        <a routerLink="/" class="btn-primary">Back to Welcome</a>
+        <a routerLink="/login" class="link-quiet">Go to log in anyway</a>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,231 @@
+/* Logout — same dark + gold palette, staged farewell motion. */
+.auth-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--space-8) var(--space-2);
+  isolation: isolate;
+}
+
+.auth-glow {
+  position: absolute;
+  inset: -4rem 0 auto;
+  height: 22rem;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(28rem 12rem at 50% 0%, var(--gold-glow), transparent 70%),
+    radial-gradient(14rem 8rem at 50% 40%, var(--accent-soft), transparent 70%);
+  animation: glow-drift var(--duration-slow) var(--ease-smooth) infinite alternate;
+}
+
+.logout-card {
+  text-align: center;
+  animation: rise-in var(--duration-entrance) var(--ease-decelerate) both;
+}
+
+.logout-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+  opacity: 0.8;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-loose);
+  color: var(--gold-bright);
+}
+
+.logout-card h1 {
+  margin: 0;
+  font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.auth-sub {
+  margin: var(--space-2) auto 0;
+  max-width: 28ch;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.logout-visual {
+  display: grid;
+  place-items: center;
+  margin-bottom: var(--space-5);
+  min-height: 5.5rem;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--text-base);
+  color: var(--gold-ink);
+  background: linear-gradient(180deg, var(--gold-kicker), var(--accent));
+  box-shadow: 0 0 0 6px var(--gold-ring), 0 8px 24px var(--gold-shadow);
+}
+
+.orbit {
+  position: absolute;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  border: 1px dashed var(--gold-line-soft);
+  animation: spin 3.2s linear infinite;
+}
+
+.orbit-dot {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 12px var(--gold-text-glow);
+}
+
+.ring {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--gold-border);
+  background: var(--gold-card-top);
+  box-shadow: 0 0 0 8px var(--gold-ring), 0 10px 30px var(--gold-shadow);
+  animation: pop-in 480ms var(--ease-decelerate) both;
+}
+
+.ring svg {
+  width: 2rem;
+  height: 2rem;
+  fill: none;
+  stroke: var(--gold-bright);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: draw-check 600ms var(--ease-decelerate) 200ms forwards;
+}
+
+.progress-track {
+  margin: var(--space-5) auto 0;
+  max-width: 16rem;
+  height: 4px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
+}
+
+.progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--gold-bright));
+}
+
+.progress-fill.is-indeterminate {
+  width: 40%;
+  animation: slide-track 1.2s var(--ease-smooth) infinite alternate;
+}
+
+.logout-actions {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--touch-target);
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, var(--gold-kicker), var(--accent));
+  color: var(--gold-ink);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  transition: transform 160ms var(--ease-decelerate), filter var(--duration-hover) var(--ease-standard);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.06);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.countdown-note {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.link-quiet {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.link-quiet:hover {
+  color: var(--gold-soft);
+}
+
+@keyframes glow-drift {
+  from { opacity: 0.7; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(8px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes draw-check {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes slide-track {
+  from { transform: translateX(-40%); }
+  to { transform: translateX(280%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-glow,
+  .logout-card,
+  .orbit,
+  .ring,
+  .ring svg,
+  .progress-fill.is-indeterminate {
+    animation: none;
+  }
+
+  .ring svg {
+    stroke-dashoffset: 0;
+  }
+
+  .btn-primary {
+    transition: none;
+  }
+}

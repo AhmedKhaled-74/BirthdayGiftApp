@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    container_name: age-calculator-db
+    environment:
+      POSTGRES_DB: "AgeCalculator"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "AgeCalc!2026Dev"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d AgeCalculator"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+volumes:
+  pg-data:

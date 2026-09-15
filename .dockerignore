@@ -1,0 +1,10 @@
+node_modules/
+age-calculator-web/dist/
+AgeCalculator.Api/wwwroot/
+AgeCalculator.Api/bin/
+AgeCalculator.Api/obj/
+AgeCalculator.Api.Tests/bin/
+AgeCalculator.Api.Tests/obj/
+.git/
+.vs/
+.idea/

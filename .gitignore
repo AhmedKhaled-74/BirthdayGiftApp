@@ -1,0 +1,23 @@
+# .NET build output
+**/bin/
+**/obj/
+*.user
+
+# Visual Studio
+.vs/
+
+# JetBrains
+.idea/
+
+# Logs
+*.log
+
+# Tooling
+*.binlog
+
+# Node / Angular
+node_modules/
+age-calculator-web/dist/
+
+# Published SPA bundle (built on `dotnet publish` / Docker, never committed)
+AgeCalculator.Api/wwwroot/

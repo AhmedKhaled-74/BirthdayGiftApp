@@ -1,0 +1,232 @@
+:root {
+  color-scheme: dark;
+
+  /* Color: default dark theme */
+  --bg: #111114;
+  --bg-soft: #19191f;
+  --surface: #1a1a20;
+  --surface-raised: #22222b;
+  --border: #33333d;
+  --border-soft: #2a2a33;
+  --text: #f2f0ea;
+  --text-muted: #aaa8a0;
+  --text-faint: #6b6a64;
+  --accent: #d49b1d;
+  --accent-soft: rgba(212, 155, 29, 0.14);
+  --danger: #ff5d5d;
+  --danger-border: rgba(255, 93, 93, 0.5);
+  --danger-bg: rgba(255, 93, 93, 0.08);
+  --success: #5cc46c;
+  --on-accent: #111;
+
+  /* Color: gold celebration scale */
+  --gold-deep: #241a06;
+  --gold-deep-2: #191204;
+  --gold-border: #a97e1c;
+  --gold-bright: #e9c860;
+  --gold-soft: #f8e6ab;
+  --gold-muted: #d8bd6d;
+  --gold-kicker: #f0d67e;
+  --gold-display: #fdf0c0;
+  --gold-label: #cfa93f;
+  --gold-ink: #241a06;
+  --gold-glow: rgba(245, 214, 123, 0.22);
+  --gold-ring: rgba(245, 214, 123, 0.18);
+  --gold-shadow: rgba(212, 155, 29, 0.18);
+  --gold-dot: rgba(245, 214, 123, 0.5);
+  --gold-dot-soft: rgba(255, 240, 190, 0.35);
+  --gold-sheen: rgba(255, 236, 170, 0.16);
+  --gold-line: rgba(233, 200, 96, 0.55);
+  --gold-line-soft: rgba(233, 200, 96, 0.45);
+  --gold-wash-top: rgba(212, 155, 29, 0.22);
+  --gold-wash-bottom: rgba(212, 155, 29, 0.07);
+  --gold-card-top: rgba(58, 42, 8, 0.9);
+  --gold-card-bottom: rgba(32, 24, 6, 0.9);
+  --gold-hover: rgba(212, 155, 29, 0.18);
+  --gold-text-glow: rgba(212, 155, 29, 0.45);
+
+  /* Type scale */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.1rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.75rem;
+  --text-4xl: 2rem;
+  --leading-body: 1.5;
+  --tracking-tight: -0.01em;
+  --tracking-wide: 0.05em;
+  --tracking-loose: 0.14em;
+  --tracking-extra: 0.28em;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Shape */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.9rem;
+  --border-width: 1px;
+
+  /* Widths */
+  --width-content: 56rem;
+  --width-auth: 24rem;
+  --width-profile: 32rem;
+  --width-input: 16rem;
+  --width-kicker-rule: 2.25rem;
+  --touch-target: 2.75rem;
+
+  /* Buttons */
+  --btn-padding: var(--space-2) var(--space-4);
+
+  /* Shadows */
+  --shadow-gold:
+    0 0 0 var(--border-width) var(--gold-ring),
+    0 18px 60px var(--gold-shadow);
+  --shadow-gold-text: 0 2px 18px var(--gold-text-glow);
+
+  /* Motion */
+  --duration-slow: 7s;
+  --duration-entrance: 600ms;
+  --duration-hover: 160ms;
+  --ease-smooth: ease-in-out;
+  --ease-standard: ease;
+  --ease-decelerate: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-hover: background-color var(--duration-hover) var(--ease-standard),
+    filter var(--duration-hover) var(--ease-standard);
+
+  /* Celebration entrance choreography */
+  --entrance-rise: 8px;
+  --stagger-step: 80ms;
+
+  /* Focus */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring: var(--focus-ring-width) solid var(--accent);
+}
+
+/* Note: the 640px breakpoint below is intentionally literal —
+   CSS custom properties cannot be used in media queries. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: var(--width-content);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5) var(--space-12);
+}
+
+.auth-card {
+  max-width: var(--width-auth);
+  margin: var(--space-16) auto;
+  padding: var(--space-8);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+/* Shared loading / empty / error states */
+.state-error {
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: var(--border-width) solid var(--danger-border);
+  border-radius: var(--radius-md);
+  background: var(--danger-bg);
+}
+
+.state-error p {
+  margin: 0 0 var(--space-3);
+  color: var(--text);
+}
+
+.state-empty {
+  margin-top: var(--space-4);
+  padding: var(--space-5);
+  border: var(--border-width) dashed var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.state-empty p {
+  margin: 0 0 var(--space-3);
+}
+
+.btn-retry {
+  padding: var(--btn-padding);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+/* Shared motion primitives (choreography lives in component styles) */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--entrance-rise));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes arrive-in {
+  from {
+    opacity: 0.35;
+    filter: brightness(0.7) saturate(0.7);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* Visible keyboard focus for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+@media (max-width: 640px) {
+  main {
+    padding: var(--space-5) var(--space-4) var(--space-8);
+  }
+
+  .auth-card {
+    margin: var(--space-8) auto;
+    padding: var(--space-6);
+  }
+}

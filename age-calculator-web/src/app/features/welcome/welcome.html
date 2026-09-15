@@ -1,0 +1,70 @@
+<section class="welcome" [class.celebration]="isBirthday()" [class.is-leaving]="leaving()">
+  <div class="welcome-glow" aria-hidden="true"></div>
+  <div class="welcome-dust" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <p class="eyebrow">{{ isBirthday() ? 'Birthday Celebration' : 'Welcome' }}</p>
+  <h1>Age Calculator</h1>
+  @if (user(); as u) {
+    <p class="welcome-user"><span class="user-dot" aria-hidden="true"></span>Welcome, {{ u.email }}.</p>
+  }
+
+  @if (loading()) {
+    <div class="skeleton-grid" role="status" aria-label="Loading your age summary">
+      <div class="skeleton-card"><span></span></div>
+      <div class="skeleton-card"><span></span></div>
+      <div class="skeleton-card"><span></span></div>
+      <div class="skeleton-card"><span></span></div>
+    </div>
+  } @else if (error(); as e) {
+    <div class="state-error" role="alert">
+      <p>{{ e }}</p>
+      <button type="button" class="btn-retry" (click)="retry()">Try again</button>
+    </div>
+  } @else if (noBirthDate()) {
+    <div class="state-empty">
+      <p>No Birth Date yet. Add it to see your Age Summary.</p>
+      <a routerLink="/profile" class="nav-link">Go to Profile</a>
+    </div>
+  } @else if (summary()) {
+    <div class="age-summary">
+      @if (isBirthday()) {
+        <div class="celebration-banner" role="status">
+          <p class="celebration-kicker">King of the Day</p>
+          <p class="birthday-message">Happy Birthday!</p>
+          <p class="celebration-sub">Today the gold is all yours. Enjoy every moment of your local calendar day.</p>
+        </div>
+      }
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span class="summary-value">{{ displayYears() }}</span>
+          <span class="summary-label">Years</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-value">{{ displayMonths() }}</span>
+          <span class="summary-label">Months</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-value">{{ displayDays() }}</span>
+          <span class="summary-label">Days</span>
+        </div>
+        <div class="summary-item countdown-card">
+          <span class="summary-value">{{ displayDaysUntilNextBirthday() }}</span>
+          <span class="summary-label">Days until next birthday</span>
+          <span class="countdown-bar" aria-hidden="true"><span class="countdown-fill" [style.width.%]="birthdayProgress()"></span></span>
+        </div>
+      </div>
+    </div>
+  }
+
+  <nav class="welcome-nav">
+    <a routerLink="/profile" class="nav-link">Profile</a>
+    <button type="button" class="btn-logout" (click)="logout()" [disabled]="leaving()">
+      @if (leaving()) {
+        <span class="mini-spinner" aria-hidden="true"></span>
+        <span>Signing out...</span>
+      } @else {
+        <span>Log out</span>
+        <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+      }
+    </button>
+  </nav>
+</section>
